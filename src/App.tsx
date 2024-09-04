@@ -1,8 +1,16 @@
 import "./App.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "./app/store";
+
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { fetchUsers } from "./app/features/getUsers/getUsersSlice";
+import {
+  searchByEmail,
+  searchByName,
+  searchByPhone,
+  searchByUsername,
+} from "./app/features/Search/searchSlice";
+import { AppDispatch, RootState } from "./app/store";
 import UserInterface from "./models/User";
 
 const App = () => {
@@ -13,6 +21,8 @@ const App = () => {
 
   const getUsersRes = useSelector((state: RootState) => state.getUsers);
   const users: UserInterface[] = getUsersRes.data;
+
+  const searchState = useSelector((state: RootState) => state.search);
 
   return (
     <div>
@@ -30,6 +40,48 @@ const App = () => {
                     <th>Username</th>
                     <th>E-mail</th>
                     <th>Phone</th>
+                  </tr>
+                  <tr>
+                    <th>
+                      <input
+                        type="text"
+                        name="name"
+                        value={searchState.name}
+                        onChange={(evt) =>
+                          dispatch(searchByName(evt.currentTarget.value))
+                        }
+                      />
+                    </th>
+                    <th>
+                      <input
+                        type="text"
+                        name="username"
+                        value={searchState.username}
+                        onChange={(evt) =>
+                          dispatch(searchByUsername(evt.currentTarget.value))
+                        }
+                      />
+                    </th>
+                    <th>
+                      <input
+                        type="text"
+                        name="email"
+                        value={searchState.email}
+                        onChange={(evt) =>
+                          dispatch(searchByEmail(evt.currentTarget.value))
+                        }
+                      />
+                    </th>
+                    <th>
+                      <input
+                        type="text"
+                        name="phone"
+                        value={searchState.phone}
+                        onChange={(evt) =>
+                          dispatch(searchByPhone(evt.currentTarget.value))
+                        }
+                      />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

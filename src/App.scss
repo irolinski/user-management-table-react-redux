@@ -19,28 +19,27 @@ main {
   overflow: scroll;
 }
 
-// table
-
+// TABLE
 .user-table {
-  thead > tr {
-    background-color: beige;
+  thead {
+    tr:first-child {
+      background-color: beige;
+    }
     th {
       padding: 0.8rem 1rem;
     }
   }
 
   td {
-    // border: 0.5px rgba(0, 0, 0, 0.2) solid;
     padding: 0.8rem 1rem;
   }
 
-  tbody > tr:nth-child(even){
+  tbody > tr:nth-child(odd) {
     background-color: beige;
   }
 }
 
-// UI components
-
+// UI COMPONENTS
 .loader {
   width: 48px;
   height: 48px;
