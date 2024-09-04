@@ -20,9 +20,16 @@ const App = () => {
   }, []);
 
   const getUsersRes = useSelector((state: RootState) => state.getUsers);
-  const users: UserInterface[] = getUsersRes.data;
+  let users: UserInterface[] = getUsersRes.data;
 
   const searchState = useSelector((state: RootState) => state.search);
+  users = users.filter(
+    (u) =>
+      u.name.toLowerCase().includes(searchState.name) &&
+      u.username.toLowerCase().includes(searchState.username) &&
+      u.email.toLowerCase().includes(searchState.email) &&
+      u.phone.toLowerCase().includes(searchState.phone)
+  );
 
   return (
     <div>
