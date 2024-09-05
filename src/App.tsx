@@ -1,8 +1,6 @@
 import "./App.scss";
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { fetchUsers } from "./app/features/getUsersSlice";
 import {
   searchByEmail,
@@ -12,41 +10,10 @@ import {
 } from "./app/features/searchSlice";
 import { toggleStandardize } from "./app/features/standardize";
 import { AppDispatch, RootState } from "./app/store";
-import UserInterface from "./models/User";
-
-import SearchIcon from "./assets/search-icon.svg";
 import SearchInput from "./components/SearchInput";
-
-const Switch = ({
-  isActive,
-  handleToggle,
-  colorOne,
-  colorTwo,
-}: {
-  isActive: boolean;
-  handleToggle: () => void;
-  colorOne: string;
-  colorTwo: string;
-}) => {
-  return (
-    <>
-      <input
-        checked={isActive}
-        onChange={handleToggle}
-        className="switch-checkbox"
-        id={`switch`}
-        type="checkbox"
-      />
-      <label
-        style={{ background: isActive ? colorOne : colorTwo }}
-        className="switch-label"
-        htmlFor={`switch`}
-      >
-        <span className={`switch-button`} />
-      </label>
-    </>
-  );
-};
+import UserInterface from "./models/User";
+import StandardizeSwitch from "./components/StandardizeSwitch";
+import SearchIcon from "./assets/search-icon.svg";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -123,22 +90,30 @@ const App = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="title">User Management Table</h1>
+        <h1 className="title text-2xl text-center my-4">
+          User Management Table
+        </h1>
         <main>
-          <div className="table-wrapper">
-            {getUsersRes.isLoading ? (
-              <span className="loader"></span>
-            ) : (
-              <section>
-                <div>
-                  <Switch
+          {getUsersRes.isLoading ? (
+            <span className="loader"></span>
+          ) : (
+            <section>
+              <menu className="my-4 flex justify-end w-full">
+                <div className="p-4 h-24 ">
+                  <img className="w-8 m-1" src={SearchIcon} />
+                  <label>Search</label>
+                </div>
+                <div className="p-3 h-24">
+                  <StandardizeSwitch
                     isActive={standardizeIsActive}
                     handleToggle={() => dispatch(toggleStandardize())}
                     colorOne={"#FFFF"}
                     colorTwo={"black"}
                   />
-                  <label>Standardize user data</label>
+                  <label>Standardize data</label>
                 </div>
+              </menu>
+              <div className="table-wrapper">
                 <table className="user-table">
                   <thead>
                     <tr>
@@ -147,7 +122,7 @@ const App = () => {
                       <th>E-mail</th>
                       <th>Phone</th>
                     </tr>
-                    <tr>
+                    <tr className="search-row max-h-1">
                       <th>
                         <SearchInput
                           value={searchState.name}
@@ -177,17 +152,17 @@ const App = () => {
                   <tbody>
                     {users.map((u: UserInterface, index: number) => (
                       <tr key={index}>
-                        <td>{u.name}</td>
-                        <td>{u.username}</td>
-                        <td>{u.email}</td>
-                        <td>{u.phone}</td>
+                        <td className="td-name">{u.name}</td>
+                        <td className="td-username">{u.username}</td>
+                        <td className="td-email">{u.email}</td>
+                        <td className="td-phone">{u.phone}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-              </section>
-            )}
-          </div>
+              </div>
+            </section>
+          )}
         </main>
       </div>
     </div>
