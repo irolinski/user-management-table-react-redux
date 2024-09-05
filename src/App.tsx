@@ -1,15 +1,21 @@
-import './App.scss';
+import "./App.scss";
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { fetchUsers } from './app/features/getUsersSlice';
+import { fetchUsers } from "./app/features/getUsersSlice";
 import {
-    searchByEmail, searchByName, searchByPhone, searchByUsername
-} from './app/features/searchSlice';
-import { toggleStandardize } from './app/features/standardize';
-import { AppDispatch, RootState } from './app/store';
-import UserInterface from './models/User';
+  searchByEmail,
+  searchByName,
+  searchByPhone,
+  searchByUsername,
+} from "./app/features/searchSlice";
+import { toggleStandardize } from "./app/features/standardize";
+import { AppDispatch, RootState } from "./app/store";
+import UserInterface from "./models/User";
+
+import SearchIcon from "./assets/search-icon.svg";
+import SearchInput from "./components/SearchInput";
 
 const Switch = ({
   isActive,
@@ -143,43 +149,27 @@ const App = () => {
                     </tr>
                     <tr>
                       <th>
-                        <input
-                          type="text"
-                          name="name"
+                        <SearchInput
                           value={searchState.name}
-                          onChange={(evt) =>
-                            dispatch(searchByName(evt.currentTarget.value))
-                          }
+                          searchFunction={searchByName}
                         />
                       </th>
                       <th>
-                        <input
-                          type="text"
-                          name="username"
+                        <SearchInput
                           value={searchState.username}
-                          onChange={(evt) =>
-                            dispatch(searchByUsername(evt.currentTarget.value))
-                          }
+                          searchFunction={searchByUsername}
                         />
                       </th>
                       <th>
-                        <input
-                          type="text"
-                          name="email"
+                        <SearchInput
                           value={searchState.email}
-                          onChange={(evt) =>
-                            dispatch(searchByEmail(evt.currentTarget.value))
-                          }
+                          searchFunction={searchByEmail}
                         />
                       </th>
                       <th>
-                        <input
-                          type="text"
-                          name="phone"
+                        <SearchInput
                           value={searchState.phone}
-                          onChange={(evt) =>
-                            dispatch(searchByPhone(evt.currentTarget.value))
-                          }
+                          searchFunction={searchByPhone}
                         />
                       </th>
                     </tr>

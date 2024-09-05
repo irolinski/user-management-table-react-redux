@@ -19,6 +19,10 @@ main {
   overflow: scroll;
 }
 
+.search-div {
+  border: 1px solid black;
+}
+
 // TABLE
 .user-table {
   thead {
@@ -39,7 +43,34 @@ main {
   }
 }
 
+// SEARCH INPUT
+
+.search-input-div {
+  &:hover,
+  &:focus {
+    border-color: #025fcc !important;
+  }
+
+  .search-clean-button {
+    transition: opacity 2s ease-in-out;
+  }
+
+  input {
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 //UI COMPONENTS
+// ICONS
+
+// .search-icon {
+//   width: 25px;
+//   height: 25px;
+//   opacity: 0.25;
+// }
 
 // STANDARDIZE SWITCH
 .switch-checkbox {
