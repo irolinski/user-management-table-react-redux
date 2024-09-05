@@ -3,7 +3,7 @@ export default interface User {
   username: string;
   email: string;
   phone: string;
-  id: number;
+  id?: number;
   website?: string;
   adress?: {
     city: string;
