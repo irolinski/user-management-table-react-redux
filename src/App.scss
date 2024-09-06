@@ -21,12 +21,12 @@ main {
 .table-wrapper {
   // min-width: 800px;
   overflow: scroll;
-  max-height: 75vw;
+  max-height: 90vw;
   // max-width: 955px;
   max-width: 95vw;
-  @media (min-width: 1024px) {
-    max-height: 600px;
-  }
+  // @media (min-width: 1024px) {
+  //   max-height: 600px;
+  // }
 }
 
 .user-table {
@@ -105,7 +105,7 @@ main {
   }
   @media (min-width: 1024px) {
     font-size: 15px;
-    line-height: 1.5;
+    // line-height: 1.5;
   }
 }
 
