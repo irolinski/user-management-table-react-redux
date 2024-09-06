@@ -14,6 +14,10 @@ import SearchInput from "./components/SearchInput";
 import UserInterface from "./models/User";
 import StandardizeSwitch from "./components/StandardizeSwitch";
 import SearchIcon from "./assets/search-icon.svg";
+import {
+  setDisplayedPage,
+  setResutltsPerPage,
+} from "./app/features/paginateTableSlice";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -93,6 +97,13 @@ const App = () => {
         )
   );
 
+  // pagination
+  const paginateTable = useSelector((state: RootState) => state.paginateTable);
+  const pagesArr = [1];
+  for (let i = 1; i <= users.length / paginateTable.resultsPerPage - 1; i++) {
+    pagesArr.push(i + 1);
+  }
+
   return (
     <div>
       <div className="container">
@@ -105,6 +116,32 @@ const App = () => {
           ) : (
             <section>
               <menu className="my-4 flex justify-end w-full">
+                <div className="p-4 h-24">
+                  <select
+                    onChange={(evt) => {
+                      dispatch(setResutltsPerPage(evt.target.value));
+                      dispatch(setDisplayedPage(1));
+                    }}
+                    value={paginateTable.resultsPerPage}
+                  >
+                    <option>5</option>
+                    <option>10</option>
+                  </select>
+                </div>
+                <div className="p-4 h-24">
+                  {pagesArr.map((i) => {
+                    return (
+                      <button
+                        className={`mx-2 ${
+                          i === paginateTable.displayedPage && "font-bold"
+                        }`}
+                        onClick={() => dispatch(setDisplayedPage(i))}
+                      >
+                        {i}
+                      </button>
+                    );
+                  })}
+                </div>
                 <div className="p-4 h-24 ">
                   <button onClick={() => dispatch(toggleSearch())}>
                     <img className="w-8 m-1" src={SearchIcon} />{" "}
@@ -163,11 +200,23 @@ const App = () => {
                   </thead>
                   <tbody>
                     {users.map((u: UserInterface, index: number) => (
-                      <tr key={index}>
+                      <tr
+                        className={`${
+                          index <
+                            paginateTable.displayedPage *
+                              paginateTable.resultsPerPage &&
+                          index >=
+                            (paginateTable.displayedPage - 1) *
+                              paginateTable.resultsPerPage
+                            ? "table-row"
+                            : "hidden"
+                        }`}
+                        key={index}
+                      >
                         <td className="name-col">{u.name}</td>
                         <td className="username-col">{u.username}</td>
                         <td className="email-col">{u.email}</td>
-                        <td className="whitespace-break-spaces phone-col">
+                        <td className="phone-col whitespace-break-spaces">
                           {u.phone}
                         </td>
                       </tr>
