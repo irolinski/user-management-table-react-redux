@@ -8,7 +8,7 @@ import {
   searchByPhone,
   searchByUsername,
 } from "./app/features/searchSlice";
-import { toggleStandardize } from "./app/features/standardize";
+import { toggleSearch, toggleStandardize } from "./app/features/tableOptions";
 import { AppDispatch, RootState } from "./app/store";
 import SearchInput from "./components/SearchInput";
 import UserInterface from "./models/User";
@@ -28,7 +28,7 @@ const App = () => {
 
   //standardize data
   const standardizeIsActive = useSelector(
-    (state: RootState) => state.toggleStandardize.isActive
+    (state: RootState) => state.tableOptions.standardizeIsActive
   );
   if (standardizeIsActive) {
     const standardizeName = (name: string) => {
@@ -70,6 +70,9 @@ const App = () => {
   }
 
   // search/filter
+  const showSearch = useSelector(
+    (state: RootState) => state.tableOptions.showSearch
+  );
   const searchState = useSelector((state: RootState) => state.search);
   users = users.filter(
     (u) =>
@@ -90,7 +93,7 @@ const App = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="title text-2xl text-center my-4">
+        <h1 className="title text-2xl text-center my-">
           User Management Table
         </h1>
         <main>
@@ -100,8 +103,10 @@ const App = () => {
             <section>
               <menu className="my-4 flex justify-end w-full">
                 <div className="p-4 h-24 ">
-                  <img className="w-8 m-1" src={SearchIcon} />
-                  <label>Search</label>
+                  <button onClick={() => dispatch(toggleSearch())}>
+                    <img className="w-8 m-1" src={SearchIcon} />{" "}
+                    <label>Search</label>
+                  </button>
                 </div>
                 <div className="p-3 h-24">
                   <StandardizeSwitch
@@ -122,7 +127,11 @@ const App = () => {
                       <th>E-mail</th>
                       <th>Phone</th>
                     </tr>
-                    <tr className="search-row max-h-1">
+                    <tr
+                      className={`search-row overflow-hidden ${
+                        showSearch ? "max-h-0 block" : "max-h-10"
+                      } `}
+                    >
                       <th>
                         <SearchInput
                           value={searchState.name}

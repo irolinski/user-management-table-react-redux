@@ -11,14 +11,19 @@ main {
   display: flex;
   min-width: 50vw;
   min-height: 75vh;
-  min-height: 600px;
+  min-height: 640px;
   // max-width: 90vw;
   // max-height: 75vh;
 }
 
 // TABLE
+
+// .search-row.r-collapse,
+
 .table-wrapper {
   overflow: scroll;
+  max-height: 600px;
+  max-width: 955px;
 }
 
 .user-table {
@@ -30,6 +35,8 @@ main {
   border-radius: 15px;
   font-size: 12px;
   line-height: 1.1;
+  min-height: 640px;
+  table-layout: fixed;
 
   thead {
     tr:first-child {
@@ -37,6 +44,7 @@ main {
     }
     th {
       padding: 0.8rem 1rem;
+      max-width: 0;
     }
   }
 
@@ -48,10 +56,12 @@ main {
     td {
       padding: 0.5rem;
       text-align: center;
-      width: 20%;
-      max-width: 20vw;
+      max-width: 230px;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-width: 200px;
+      max-width: 200px;
+      // max-width: 0;
 
       &:first-child {
         text-align: left;
@@ -80,6 +90,13 @@ main {
 }
 
 // SEARCH INPUT
+
+// .search-row {
+//   * {
+//     max-height: 0px;
+//     overflow: hidden;
+//   }
+// }
 
 .search-input-div {
   &:hover,
