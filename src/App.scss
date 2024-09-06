@@ -22,8 +22,13 @@ main {
 
 .table-wrapper {
   overflow: scroll;
-  max-height: 600px;
-  max-width: 955px;
+  max-height: 75vw;
+  // max-width: 955px;
+  max-width: 95vw;
+  @media (min-width: 1024px) {
+    max-height: 600px;
+
+  }
 }
 
 .user-table {
@@ -84,8 +89,8 @@ main {
     line-height: 1.2;
   }
   @media (min-width: 1024px) {
-    font-size: 16px;
-    line-height: 1.5;
+    // font-size: 16px;
+    // line-height: 1.5;
   }
 }
 
