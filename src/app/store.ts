@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import getUsersSlice from "./features/getUsersSlice";
 import searchSlice from "./features/searchSlice";
-import toggleStandardize from "./features/standardize";
+import tableOptions from "./features/tableOptions";
 
 export const store = configureStore({
   reducer: {
     getUsers: getUsersSlice,
     search: searchSlice,
-    toggleStandardize: toggleStandardize,
+    tableOptions: tableOptions,
   },
 });
 
