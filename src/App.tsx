@@ -125,14 +125,14 @@ const App = () => {
                 <table className="user-table">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Username</th>
-                      <th>E-mail</th>
-                      <th>Phone</th>
+                      <th className="name-col">Name</th>
+                      <th className="username-col">Username</th>
+                      <th className="email-col">E-mail</th>
+                      <th className="phone-col ">Phone</th>
                     </tr>
                     <tr
                       className={`search-row overflow-hidden ${
-                        showSearch ? "max-h-0 hidden" : "max-h-10"
+                        showSearch ? "hidden" : ""
                       } `}
                     >
                       <th>
@@ -164,10 +164,10 @@ const App = () => {
                   <tbody>
                     {users.map((u: UserInterface, index: number) => (
                       <tr key={index}>
-                        <td className="td-name">{u.name}</td>
-                        <td className="td-username">{u.username}</td>
-                        <td className="td-email">{u.email}</td>
-                        <td className="td-phone whitespace-break-spaces">
+                        <td className="name-col">{u.name}</td>
+                        <td className="username-col">{u.username}</td>
+                        <td className="email-col">{u.email}</td>
+                        <td className="whitespace-break-spaces phone-col">
                           {u.phone}
                         </td>
                       </tr>

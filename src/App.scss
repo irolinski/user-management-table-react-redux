@@ -18,16 +18,14 @@ main {
 
 // TABLE
 
-// .search-row.r-collapse,
-
 .table-wrapper {
+  // min-width: 800px;
   overflow: scroll;
   max-height: 75vw;
   // max-width: 955px;
   max-width: 95vw;
   @media (min-width: 1024px) {
     max-height: 600px;
-
   }
 }
 
@@ -40,9 +38,25 @@ main {
   border-radius: 15px;
   font-size: 12px;
   line-height: 1.1;
+  min-width: 800px;
   min-height: 640px;
   table-layout: fixed;
 
+  // fix column width according to data space needs
+  .name-col {
+    width: 25%;
+  }
+  .username-col {
+    width: 20%;
+  }
+  .email-col {
+    width: 30%;
+  }
+  .phone-col {
+    width: 25%;
+  }
+
+  // style table header
   thead {
     tr:first-child {
       background-color: rgba(210, 210, 210, 0.3);
@@ -53,6 +67,7 @@ main {
     }
   }
 
+  // style table cells
   tbody {
     tr {
       text-align: left;
@@ -61,11 +76,11 @@ main {
     td {
       padding: 0.5rem;
       text-align: center;
-      max-width: 230px;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-width: 200px;
-      max-width: 200px;
+      //the below should not be needed, now that the column widths are fixed
+      // min-width: 150px;
+      // max-width: 225px;
       // max-width: 0;
 
       &:first-child {
@@ -89,19 +104,12 @@ main {
     line-height: 1.2;
   }
   @media (min-width: 1024px) {
-    // font-size: 16px;
-    // line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.5;
   }
 }
 
 // SEARCH INPUT
-
-// .search-row {
-//   * {
-//     max-height: 0px;
-//     overflow: hidden;
-//   }
-// }
 
 .search-input-div {
   &:hover,
