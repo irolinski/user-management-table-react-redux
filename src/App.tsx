@@ -53,7 +53,10 @@ const App = () => {
     };
 
     const standardizePhone = (phone: string) => {
-      return phone.replace(/[\. _),:-]+(?![ x])/g, "-").replace("(", "");
+      return phone
+        .replace(/[\. _),:-]+(?![ x])/g, "-")
+        .replace("(", "")
+        .replace(" x", " \nx");
     };
 
     const standardizeUsers = (users: UserInterface[]) =>
@@ -164,7 +167,9 @@ const App = () => {
                         <td className="td-name">{u.name}</td>
                         <td className="td-username">{u.username}</td>
                         <td className="td-email">{u.email}</td>
-                        <td className="td-phone">{u.phone}</td>
+                        <td className="td-phone whitespace-break-spaces">
+                          {u.phone}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
