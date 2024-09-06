@@ -132,7 +132,7 @@ const App = () => {
                     </tr>
                     <tr
                       className={`search-row overflow-hidden ${
-                        showSearch ? "max-h-0 block" : "max-h-10"
+                        showSearch ? "max-h-0 hidden" : "max-h-10"
                       } `}
                     >
                       <th>
