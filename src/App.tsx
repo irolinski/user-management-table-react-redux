@@ -173,24 +173,28 @@ const App = () => {
                         <SearchInput
                           value={searchState.name}
                           searchFunction={searchByName}
+                          displayedPage={paginateTable.displayedPage}
                         />
                       </th>
                       <th>
                         <SearchInput
                           value={searchState.username}
                           searchFunction={searchByUsername}
+                          displayedPage={paginateTable.displayedPage}
                         />
                       </th>
                       <th>
                         <SearchInput
                           value={searchState.email}
                           searchFunction={searchByEmail}
+                          displayedPage={paginateTable.displayedPage}
                         />
                       </th>
                       <th>
                         <SearchInput
                           value={searchState.phone}
                           searchFunction={searchByPhone}
+                          displayedPage={paginateTable.displayedPage}
                         />
                       </th>
                     </tr>

@@ -2,13 +2,19 @@ import SearchIcon from "./../assets/search-icon.svg";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../app/store";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
+import { setDisplayedPage } from "../app/features/paginateTableSlice";
 
 interface SearchInputTypes {
   value: string;
   searchFunction: ActionCreatorWithPayload<string>;
+  displayedPage: number;
 }
 
-const SearchInput = ({ value, searchFunction }: SearchInputTypes) => {
+const SearchInput = ({
+  value,
+  searchFunction,
+  displayedPage,
+}: SearchInputTypes) => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -24,7 +30,12 @@ const SearchInput = ({ value, searchFunction }: SearchInputTypes) => {
         type="text"
         name="name"
         value={value}
-        onChange={(evt) => dispatch(searchFunction(evt.currentTarget.value))}
+        onChange={(evt) => {
+          dispatch(searchFunction(evt.currentTarget.value));
+          if (displayedPage !== 1) {
+            dispatch(setDisplayedPage(1));
+          }
+        }}
       />
       <button
         className={`search-clean-button w-1/5  ${
