@@ -14,12 +14,13 @@ import SearchInput from "./components/SearchInput";
 import UserInterface from "./models/User";
 import StandardizeSwitch from "./components/StandardizeSwitch";
 import SearchIcon from "./assets/search-icon.svg";
-import {
-  setDisplayedPage,
-  setResutltsPerPage,
-} from "./app/features/paginateTableSlice";
+// import {
+//   setDisplayedPage,
+//   setResutltsPerPage,
+// } from "./app/features/paginateTableSlice";
 import PaginationButtons from "./components/PaginationButtons";
 import AmountInfo from "./components/AmountInfo";
+import ResultsPerPage from "./components/ResultsPerPage";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -118,7 +119,8 @@ const App = () => {
               <menu className="h-24 my-4 flex justify-between w-full">
                 <div className="h-full flex flex-col justify-center">
                   <label htmlFor="results-per-page">Display: </label>
-                  <select
+                  <ResultsPerPage value={paginateTable.resultsPerPage} />
+                  {/* <select
                     id="results-per-page"
                     className="h-1/4"
                     onChange={(evt) => {
@@ -129,7 +131,7 @@ const App = () => {
                   >
                     <option>5</option>
                     <option>10</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div className="h-full flex">
                   <div className="p-4 h-full ">
