@@ -18,6 +18,8 @@ import {
   setDisplayedPage,
   setResutltsPerPage,
 } from "./app/features/paginateTableSlice";
+import PaginationButtons from "./components/PaginationButtons";
+import AmountInfo from "./components/AmountInfo";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -115,9 +117,12 @@ const App = () => {
             <span className="loader"></span>
           ) : (
             <section>
-              <menu className="my-4 flex justify-end w-full">
-                <div className="p-4 h-24">
+              <menu className="h-24 my-4 flex justify-between w-full">
+                <div className="h-full flex flex-col justify-center">
+                  <label htmlFor="results-per-page">Display: </label>
                   <select
+                    id="results-per-page"
+                    className="h-1/4"
                     onChange={(evt) => {
                       dispatch(setResutltsPerPage(evt.target.value));
                       dispatch(setDisplayedPage(1));
@@ -128,34 +133,26 @@ const App = () => {
                     <option>10</option>
                   </select>
                 </div>
-                <div className="p-4 h-24">
-                  {pagesArr.map((i) => {
-                    return (
-                      <button
-                        className={`mx-2 ${
-                          i === paginateTable.displayedPage && "font-bold"
-                        }`}
-                        onClick={() => dispatch(setDisplayedPage(i))}
-                      >
-                        {i}
+                <div className="h-full flex">
+                  <div className="p-4 h-full ">
+                    <div id="search-button">
+                      <button onClick={() => dispatch(toggleSearch())}>
+                        <img className="w-8 m-1" src={SearchIcon} />
                       </button>
-                    );
-                  })}
-                </div>
-                <div className="p-4 h-24 ">
-                  <button onClick={() => dispatch(toggleSearch())}>
-                    <img className="w-8 m-1" src={SearchIcon} />{" "}
-                    <label>Search</label>
-                  </button>
-                </div>
-                <div className="p-3 h-24">
-                  <StandardizeSwitch
-                    isActive={standardizeIsActive}
-                    handleToggle={() => dispatch(toggleStandardize())}
-                    colorOne={"#FFFF"}
-                    colorTwo={"black"}
-                  />
-                  <label>Standardize data</label>
+                    </div>
+                    <label htmlFor="search-button">Search</label>
+                  </div>
+                  <div className="p-3 h-full">
+                    <div id="standardize-switch">
+                      <StandardizeSwitch
+                        isActive={standardizeIsActive}
+                        handleToggle={() => dispatch(toggleStandardize())}
+                        colorOne={"#FFFF"}
+                        colorTwo={"black"}
+                      />
+                    </div>
+                    <label htmlFor="standardize-switch">Standardize data</label>
+                  </div>
                 </div>
               </menu>
               <div className="table-wrapper">
@@ -232,6 +229,18 @@ const App = () => {
                   </tbody>
                 </table>
               </div>
+              <section className="table-footer w-full p-4">
+                <div className="w-full flex justify-between">
+                  <AmountInfo
+                    allResultsNum={users.length}
+                    perPageResultsNum={paginateTable.resultsPerPage}
+                  />
+                  <PaginationButtons
+                    pagesArr={pagesArr}
+                    displayedPage={paginateTable.displayedPage}
+                  />
+                </div>
+              </section>
             </section>
           )}
         </main>
