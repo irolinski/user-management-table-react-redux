@@ -18,6 +18,7 @@ import SearchInput from "./components/SearchInput";
 import StandardizeSwitch from "./components/StandardizeSwitch";
 import UserInterface from "./models/User";
 import { standardizeName, standardizePhone } from "./utils/standardizeUsers";
+import TableBodyPlaceholder from "./components/TableBodyPlaceholder";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -183,11 +184,9 @@ const App = () => {
                         </tr>
                       ))
                     ) : (
-                      <div className="table-row table-body-placeholder">
-                        <span className="text-center absolute top-1/2 left-0 right-0 w-auto mx-auto">
-                          No results to display.
-                        </span>
-                      </div>
+                      <TableBodyPlaceholder
+                        message={"No results to display."}
+                      />
                     )}
                   </tbody>
                 </table>

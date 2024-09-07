@@ -5,8 +5,9 @@ import {
   setResutltsPerPage,
 } from "../app/features/paginateTableSlice";
 
+
 const ResultsPerPage = ({ value }: { value: number }) => {
-  const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch<AppDispatch>();
 
   return (
     <select
