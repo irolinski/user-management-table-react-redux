@@ -59,10 +59,8 @@ const App = () => {
     };
 
     const standardizePhone = (phone: string) => {
-      return phone
-        .replace(/[\. _),:-]+(?![ x])/g, "-")
-        .replace("(", "")
-        .replace(" x", " \nx");
+      return phone.replace(/[\. _),:-]+(?![ x])/g, "-").replace("(", "");
+      // .replace(" x", " \nx");
     };
 
     const standardizeUsers = (users: UserInterface[]) =>

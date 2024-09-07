@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../app/store";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { setDisplayedPage } from "../app/features/paginateTableSlice";
+import { preventSpecialChars } from "../utils/preventSpecialChars";
 
 interface SearchInputTypes {
   value: string;
@@ -30,12 +31,14 @@ const SearchInput = ({
         type="text"
         name="name"
         value={value}
+        maxLength={50}
         onChange={(evt) => {
           dispatch(searchFunction(evt.currentTarget.value));
           if (displayedPage !== 1) {
             dispatch(setDisplayedPage(1));
           }
         }}
+        onKeyDown={(evt) => preventSpecialChars(evt)}
       />
       <button
         className={`search-clean-button w-1/5  ${
