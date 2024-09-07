@@ -59,8 +59,10 @@ const App = () => {
     };
 
     const standardizePhone = (phone: string) => {
-      return phone.replace(/[\. _),:-]+(?![ x])/g, "-").replace("(", "");
-      // .replace(" x", " \nx");
+      return phone
+        .replace(/[\. _),:-]+(?![ x])/g, "-")
+        .replace("(", "")
+        .replace(" x", " \nx");
     };
 
     const standardizeUsers = (users: UserInterface[]) =>
@@ -165,28 +167,28 @@ const App = () => {
                         showSearch ? "hidden" : ""
                       } `}
                     >
-                      <th>
+                      <th className="name-col">
                         <SearchInput
                           value={searchState.name}
                           searchFunction={searchByName}
                           displayedPage={paginateTable.displayedPage}
                         />
                       </th>
-                      <th>
+                      <th className="username-col">
                         <SearchInput
                           value={searchState.username}
                           searchFunction={searchByUsername}
                           displayedPage={paginateTable.displayedPage}
                         />
                       </th>
-                      <th>
+                      <th className="email-col">
                         <SearchInput
                           value={searchState.email}
                           searchFunction={searchByEmail}
                           displayedPage={paginateTable.displayedPage}
                         />
                       </th>
-                      <th>
+                      <th className="phone-col">
                         <SearchInput
                           value={searchState.phone}
                           searchFunction={searchByPhone}
