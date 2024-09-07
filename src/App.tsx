@@ -159,7 +159,7 @@ const App = () => {
                 </div>
               </menu>
               <div className="table-wrapper">
-                <table className="user-table">
+                <table className="user-table relative">
                   <thead>
                     <tr>
                       <th className="name-col">Name</th>
@@ -198,29 +198,37 @@ const App = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {users.map((u: UserInterface, index: number) => (
-                      <tr
-                        className={`${
-                          index <
-                            paginateTable.displayedPage *
-                              paginateTable.resultsPerPage &&
-                          index >=
-                            (paginateTable.displayedPage - 1) *
-                              paginateTable.resultsPerPage
-                            ? "table-row"
-                            : "hidden"
-                        }`}
-                        key={index}
-                      >
-                        <td className="name-col">{u.name}</td>
-                        <td className="username-col">{u.username}</td>
-                        <td className="email-col">{u.email}</td>
-                        <td className="phone-col whitespace-break-spaces">
-                          {u.phone}
-                        </td>
-                      </tr>
-                    ))}
+                  <tbody className="">
+                    {users.length > 0 ? (
+                      users.map((u: UserInterface, index: number) => (
+                        <tr
+                          className={`${
+                            index <
+                              paginateTable.displayedPage *
+                                paginateTable.resultsPerPage &&
+                            index >=
+                              (paginateTable.displayedPage - 1) *
+                                paginateTable.resultsPerPage
+                              ? "table-row"
+                              : "hidden"
+                          }`}
+                          key={index}
+                        >
+                          <td className="name-col">{u.name}</td>
+                          <td className="username-col">{u.username}</td>
+                          <td className="email-col">{u.email}</td>
+                          <td className="phone-col whitespace-break-spaces">
+                            {u.phone}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <div className="table-row min-w-[800px] min-h-[640px]">
+                        <span className="text-center absolute top-1/2 left-0 right-0 w-auto mx-auto">
+                          No results to display.
+                        </span>
+                      </div>
+                    )}
                   </tbody>
                 </table>
               </div>
