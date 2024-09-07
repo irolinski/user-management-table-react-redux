@@ -21,11 +21,15 @@ $table-width: 800px;
 $table-height: 450px;
 $cell-height: 80px;
 
+.table-menu-wrapper {
+  max-width: 90vw;
+}
+
 .table-wrapper {
   overflow: scroll;
+  // do not set min-width! - it ruins responsiveness
   min-height: calc($table-height + 50px);
-  min-width: calc($table-width + 50px);
-  max-height: calc($table-height + 50px); // .user-table max-height + margin
+  max-height: calc($table-height + 50px);
   max-width: calc($table-width + 50px);
 }
 

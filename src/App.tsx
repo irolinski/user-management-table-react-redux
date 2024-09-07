@@ -116,7 +116,7 @@ const App = () => {
           {getUsersRes.isLoading ? (
             <span className="loader"></span>
           ) : (
-            <section>
+            <section className="table-menu-wrapper">
               <menu className="h-24 my-4 flex justify-between w-full">
                 <div className="h-full flex flex-col justify-center">
                   <label htmlFor="results-per-page">Display: </label>
