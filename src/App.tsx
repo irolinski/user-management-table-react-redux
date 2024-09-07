@@ -102,7 +102,9 @@ const App = () => {
   // pagination
   const paginateTable = useSelector((state: RootState) => state.paginateTable);
   const pagesArr = [1];
-  for (let i = 1; i <= users.length / paginateTable.resultsPerPage - 1; i++) {
+
+  const pageNum: number = users.length / paginateTable.resultsPerPage;
+  for (let i = 1; i < pageNum; i++) {
     pagesArr.push(i + 1);
   }
 
