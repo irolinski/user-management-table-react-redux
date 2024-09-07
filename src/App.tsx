@@ -59,10 +59,8 @@ const App = () => {
     };
 
     const standardizePhone = (phone: string) => {
-      return phone
-        .replace(/[\. _),:-]+(?![ x])/g, "-")
-        .replace("(", "")
-        .replace(" x", " \nx");
+      return phone.replace(/[\. _),:-]+(?![ x])/g, "-").replace("(", "");
+      // .replace(" x", " \nx");
     };
 
     const standardizeUsers = (users: UserInterface[]) =>
@@ -109,9 +107,7 @@ const App = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="title text-2xl text-center my-">
-          User Management Table
-        </h1>
+        <h1 className="title text-3xl text-center">User Management Table</h1>
         <main>
           {getUsersRes.isLoading ? (
             <span className="loader"></span>
@@ -224,7 +220,7 @@ const App = () => {
                         </tr>
                       ))
                     ) : (
-                      <div className="table-row min-w-[800px] min-h-[640px]">
+                      <div className="table-row">
                         <span className="text-center absolute top-1/2 left-0 right-0 w-auto mx-auto">
                           No results to display.
                         </span>
