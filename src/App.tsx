@@ -10,17 +10,14 @@ import {
 } from "./app/features/searchSlice";
 import { toggleSearch, toggleStandardize } from "./app/features/tableOptions";
 import { AppDispatch, RootState } from "./app/store";
-import SearchInput from "./components/SearchInput";
-import UserInterface from "./models/User";
-import StandardizeSwitch from "./components/StandardizeSwitch";
 import SearchIcon from "./assets/search-icon.svg";
-// import {
-//   setDisplayedPage,
-//   setResutltsPerPage,
-// } from "./app/features/paginateTableSlice";
-import PaginationButtons from "./components/PaginationButtons";
 import AmountInfo from "./components/AmountInfo";
+import PaginationButtons from "./components/PaginationButtons";
 import ResultsPerPage from "./components/ResultsPerPage";
+import SearchInput from "./components/SearchInput";
+import StandardizeSwitch from "./components/StandardizeSwitch";
+import UserInterface from "./models/User";
+import { standardizeName, standardizePhone } from "./utils/standardizeUsers";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,33 +34,8 @@ const App = () => {
   const standardizeIsActive = useSelector(
     (state: RootState) => state.tableOptions.standardizeIsActive
   );
+
   if (standardizeIsActive) {
-    const standardizeName = (name: string) => {
-      const honorifics = [
-        "mr. ",
-        "mrs. ",
-        "ms. ",
-        "dr. ",
-        "dr ",
-        "miss ",
-        "phd ",
-        "md ",
-        "prof ",
-        "fr ",
-      ];
-      for (let i = 0; i < honorifics.length; i++) {
-        if (name.toLowerCase().indexOf(honorifics[i]) === 0) {
-          return name.slice(honorifics[i].length);
-        }
-      }
-      return name;
-    };
-
-    const standardizePhone = (phone: string) => {
-      return phone.replace(/[\. _),:-]+(?![ x])/g, "-").replace("(", "");
-      // .replace(" x", " \nx");
-    };
-
     const standardizeUsers = (users: UserInterface[]) =>
       users.map((u) => {
         return {
@@ -73,7 +45,6 @@ const App = () => {
           phone: standardizePhone(u.phone), //standardize phone string format
         };
       });
-
     users = standardizeUsers(users);
   }
 
@@ -120,18 +91,6 @@ const App = () => {
                 <div className="h-full flex flex-col justify-center">
                   <label htmlFor="results-per-page">Display: </label>
                   <ResultsPerPage value={paginateTable.resultsPerPage} />
-                  {/* <select
-                    id="results-per-page"
-                    className="h-1/4"
-                    onChange={(evt) => {
-                      dispatch(setResutltsPerPage(evt.target.value));
-                      dispatch(setDisplayedPage(1));
-                    }}
-                    value={paginateTable.resultsPerPage}
-                  >
-                    <option>5</option>
-                    <option>10</option>
-                  </select> */}
                 </div>
                 <div className="h-full flex">
                   <div className="p-4 h-full ">
