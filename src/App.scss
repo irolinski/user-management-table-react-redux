@@ -50,7 +50,11 @@ $cell-height: 80px;
 
   .table-row {
     min-width: $table-width;
-    min-height: $table-height;
+    // min-height: $table-height;
+  }
+
+  .table-body-placeholder {
+    height: 408px;
   }
 
   // fix column width according to data space needs

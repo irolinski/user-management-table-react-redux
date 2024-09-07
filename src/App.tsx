@@ -222,7 +222,7 @@ const App = () => {
                         </tr>
                       ))
                     ) : (
-                      <div className="table-row">
+                      <div className="table-row table-body-placeholder">
                         <span className="text-center absolute top-1/2 left-0 right-0 w-auto mx-auto">
                           No results to display.
                         </span>
