@@ -1,9 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchUsers = createAsyncThunk("fetchUsers", async () => {
-  const data = await fetch("https://jsonplaceholder.typicode.com/users");
-  return data.json();
-});
+export const fetchUsers = createAsyncThunk(
+  "users/fetchUsers",
+  async (_arg, { rejectWithValue }) => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    if (!res.ok) {
+      return rejectWithValue({
+        status: res.status,
+        message: await res.text(),
+      });
+    }
+    return res.json();
+  }
+);
 
 const getUsersSlice = createSlice({
   name: "getUsers",
@@ -23,6 +32,7 @@ const getUsersSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchUsers.rejected, (state) => {
+        state.isLoading = false;
         state.error = true;
       });
   },

@@ -25,11 +25,17 @@ const App = () => {
 
   //fetch data
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers())
+      .unwrap()
+      .then()
+      .catch((err) => {
+        alert("An error has occured: " + err.message);
+      });
   }, []);
 
   const getUsersRes = useSelector((state: RootState) => state.getUsers);
-  let users: UserInterface[] = getUsersRes.data;
+
+  let users: UserInterface[] = getUsersRes.data ?? [];
 
   //standardize data
   const standardizeIsActive = useSelector(
