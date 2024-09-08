@@ -12,7 +12,7 @@ const StandardizeSwitch = ({
   colorTwo,
 }: StandardizeSwitchTypes) => {
   return (
-    <>
+    <div>
       <input
         checked={isActive}
         onChange={handleToggle}
@@ -27,7 +27,7 @@ const StandardizeSwitch = ({
       >
         <span className={`switch-button`} />
       </label>
-    </>
+    </div>
   );
 };
 

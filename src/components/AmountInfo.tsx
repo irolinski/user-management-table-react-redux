@@ -5,7 +5,7 @@ interface AmountInfoTypes {
 
 const AmountInfo = ({ allResultsNum, perPageResultsNum }: AmountInfoTypes) => {
   return (
-    <div className="amount-info p-4">
+    <div className="amount-info py-4 pr-4">
       {allResultsNum > 0 && (
         <span>
           Showing{" "}

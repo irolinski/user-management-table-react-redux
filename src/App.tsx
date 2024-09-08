@@ -96,7 +96,7 @@ const App = () => {
                 <ResultsPerPage value={paginateTable.resultsPerPage} />
               </div>
               <div className="h-full flex">
-                <div className="p-4 h-full ">
+                <div className="py-4 pl-4 grid h-full ">
                   <div id="search-button">
                     <button onClick={() => dispatch(toggleSearch())}>
                       <img className="w-8 m-1" src={SearchIcon} />
@@ -104,8 +104,11 @@ const App = () => {
                   </div>
                   <label htmlFor="search-button">Search</label>
                 </div>
-                <div className="p-3 h-full">
-                  <div id="standardize-switch">
+                <div className="py-4 pl-4 grid h-full">
+                  <div
+                    className="mx-auto -translate-y-2"
+                    id="standardize-switch"
+                  >
                     <StandardizeSwitch
                       isActive={standardizeIsActive}
                       handleToggle={() => dispatch(toggleStandardize())}
@@ -113,7 +116,7 @@ const App = () => {
                       colorTwo={"black"}
                     />
                   </div>
-                  <label htmlFor="standardize-switch">Standardize data</label>
+                  <label htmlFor="standardize-switch">Format data</label>
                 </div>
               </div>
             </menu>
@@ -191,7 +194,7 @@ const App = () => {
                 </tbody>
               </table>
             </div>
-            <section className="table-footer w-full p-4">
+            <section className="table-footer w-full py-4">
               <div className="w-full flex justify-between">
                 <AmountInfo
                   allResultsNum={users.length}

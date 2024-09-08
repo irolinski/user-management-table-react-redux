@@ -14,7 +14,7 @@ const PaginationButtons = ({
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className="p-4 ">
+    <div className="py-4 pl-4">
       {pagesArr.length < 5
         ? pagesArr.map((pageNum) => {
             return (
