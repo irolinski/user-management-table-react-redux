@@ -54,17 +54,19 @@ const App = () => {
     (state: RootState) => state.tableOptions.showSearch
   );
   const searchState = useSelector((state: RootState) => state.search);
-  users = users.filter(
-    (u) =>
-      u.name.toLowerCase().includes(searchState.name.toLowerCase()) &&
-      u.username.toLowerCase().includes(searchState.username.toLowerCase()) &&
-      u.email.toLowerCase().includes(searchState.email.toLowerCase()) &&
-      u.phone
-        .toLowerCase()
-        .replace(/[- .]/g, "")
-        .includes(searchState.phone.replace(/[- .]/g, ""))
-  );
 
+  if (users.length > 0) {
+    users = users.filter(
+      (u) =>
+        u.name.toLowerCase().includes(searchState.name.toLowerCase()) &&
+        u.username.toLowerCase().includes(searchState.username.toLowerCase()) &&
+        u.email.toLowerCase().includes(searchState.email.toLowerCase()) &&
+        u.phone
+          .toLowerCase()
+          .replace(/[- .]/g, "")
+          .includes(searchState.phone.replace(/[- .]/g, ""))
+    );
+  }
   // pagination
   const paginateTable = useSelector((state: RootState) => state.paginateTable);
   const pagesArr = [1];
