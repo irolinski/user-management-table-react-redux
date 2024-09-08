@@ -2,6 +2,12 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    margin-top: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    margin: 2rem auto;
+  }
 }
 
 main {
@@ -12,9 +18,8 @@ main {
   min-width: 50vw;
   min-height: 75vh;
   min-height: 600px;
-  // max-width: 90vw;
-  // max-height: 75vh;
 }
+
 
 // TABLE
 $table-width: 800px;
@@ -50,7 +55,6 @@ $cell-height: 80px;
 
   .table-row {
     min-width: $table-width;
-    // min-height: $table-height;
   }
 
   .table-body-placeholder {
@@ -104,7 +108,7 @@ $cell-height: 80px;
       overflow: hidden;
       text-overflow: ellipsis;
       overflow-wrap: anywhere;
-      height: $cell-height; // height parameter in tables, works as max-height
+      height: $cell-height; // height parameter in tables also works as max-height
 
       &:first-child {
         text-align: left;
@@ -122,6 +126,7 @@ $cell-height: 80px;
   tbody > tr:nth-child(odd) {
     background-color: rgba(210, 210, 210, 0.3);
   }
+
   @media (min-width: 640px) {
     font-size: 14px;
     line-height: 1.2;
@@ -133,7 +138,6 @@ $cell-height: 80px;
 }
 
 // SEARCH INPUT
-
 .search-input-div {
   &:hover,
   &:focus {
@@ -213,5 +217,12 @@ $cell-height: 80px;
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+// scale down for mobile
+@media (max-width: 768px) {
+  main {
+    transform: scale(0.9);
   }
 }

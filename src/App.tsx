@@ -83,7 +83,7 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container mt-12 sm:mt-4">
       <h1 className="title text-3xl text-center">User Management Table</h1>
       <main>
         {getUsersRes.isLoading ? (
