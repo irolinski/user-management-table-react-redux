@@ -65,6 +65,9 @@ $cell-height: 80px;
 
   .table-row {
     min-width: $table-width;
+    &:hover {
+      background-color: rgba(228, 228, 228, 0.391) !important;
+    }
   }
 
   .table-body-placeholder {
