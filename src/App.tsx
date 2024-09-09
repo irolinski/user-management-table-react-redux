@@ -121,9 +121,15 @@ const App = () => {
               </div>
             </menu>
             <div className="table-wrapper">
-              <table className="user-table relative">
+              <table className="user-table">
                 <thead>
-                  <tr>
+                  <tr className="table-header">
+                    <th className="name-col">Name</th>
+                    <th className="username-col">Username</th>
+                    <th className="email-col">E-mail</th>
+                    <th className="phone-col ">Phone</th>
+                  </tr>
+                  <tr className="table-header-gutter opacity-0">
                     <th className="name-col">Name</th>
                     <th className="username-col">Username</th>
                     <th className="email-col">E-mail</th>
