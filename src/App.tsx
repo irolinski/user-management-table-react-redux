@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useEffect } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "./app/features/getUsersSlice";
 import {
@@ -9,6 +9,7 @@ import {
   searchByUsername,
 } from "./app/features/searchSlice";
 import { toggleSearch, toggleStandardize } from "./app/features/tableOptions";
+import { setHeaderOffset } from "./app/features/tableStyle";
 import { AppDispatch, RootState } from "./app/store";
 import SearchIcon from "./assets/search-icon.svg";
 import AmountInfo from "./components/AmountInfo";
@@ -16,14 +17,14 @@ import PaginationButtons from "./components/PaginationButtons";
 import ResultsPerPage from "./components/ResultsPerPage";
 import SearchInput from "./components/SearchInput";
 import StandardizeSwitch from "./components/StandardizeSwitch";
+import TableBodyPlaceholder from "./components/TableBodyPlaceholder";
 import UserInterface from "./models/User";
 import { standardizeName, standardizePhone } from "./utils/standardizeUsers";
-import TableBodyPlaceholder from "./components/TableBodyPlaceholder";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  //fetch data
+  //fetch user data
   useEffect(() => {
     dispatch(fetchUsers())
       .unwrap()
@@ -37,7 +38,7 @@ const App = () => {
 
   let users: UserInterface[] = getUsersRes.data ?? [];
 
-  //standardize data
+  //standardize user data
   const standardizeIsActive = useSelector(
     (state: RootState) => state.tableOptions.standardizeIsActive
   );
@@ -55,7 +56,7 @@ const App = () => {
     users = standardizeUsers(users);
   }
 
-  // search/filter
+  // search/filter user data
   const showSearch = useSelector(
     (state: RootState) => state.tableOptions.showSearch
   );
@@ -73,14 +74,22 @@ const App = () => {
           .includes(searchState.phone.replace(/[- .]/g, ""))
     );
   }
-  // pagination
+
+  // table pagination
   const paginateTable = useSelector((state: RootState) => state.paginateTable);
   const pagesArr = [1];
-
   const pageNum: number = users.length / paginateTable.resultsPerPage;
   for (let i = 1; i < pageNum; i++) {
     pagesArr.push(i + 1);
   }
+
+  //table style
+  const tableStyle = useSelector((state: RootState) => state.tableStyle);
+  const elementRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const handleScroll = () => {
+    const scrollTop: number = elementRef!.current!.scrollTop;
+    dispatch(setHeaderOffset(scrollTop));
+  };
 
   return (
     <div className="container mt-12 sm:mt-4">
@@ -120,16 +129,19 @@ const App = () => {
                 </div>
               </div>
             </menu>
-            <div className="table-wrapper">
+            <div
+              className="table-wrapper"
+              ref={elementRef}
+              onScroll={() => handleScroll()}
+            >
               <table className="user-table">
                 <thead>
-                  <tr className="table-header">
-                    <th className="name-col">Name</th>
-                    <th className="username-col">Username</th>
-                    <th className="email-col">E-mail</th>
-                    <th className="phone-col ">Phone</th>
-                  </tr>
-                  <tr className="table-header-gutter opacity-0">
+                  <tr
+                    className={`table-header`}
+                    style={{
+                      transform: `translateY(${tableStyle.headerOffset}px)`,
+                    }}
+                  >
                     <th className="name-col">Name</th>
                     <th className="username-col">Username</th>
                     <th className="email-col">E-mail</th>

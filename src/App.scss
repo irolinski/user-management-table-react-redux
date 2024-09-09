@@ -53,9 +53,11 @@ $cell-height: 80px;
   border-collapse: collapse;
 
   .table-header {
-    position: absolute;
+    position: relative;
     z-index: 10;
     background-color: rgb(243, 240, 240) !important;
+    max-width: 100%;
+    transition: transform 0.3s ease-out;
   }
 
   tr {
