@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../app/store";
 import { setDisplayedPage } from "../app/features/paginateTableSlice";
+import { Fragment } from "react/jsx-runtime";
 
 interface PaginationButtonsTypes {
   pagesArr: number[];
@@ -16,31 +17,35 @@ const PaginationButtons = ({
   return (
     <div className="py-4 pl-4">
       {pagesArr.length < 5
-        ? pagesArr.map((pageNum) => {
+        ? pagesArr.map((pageNum, index) => {
             return (
-              <button
-                className={`mx-2 ${pageNum === displayedPage && "font-bold"}`}
-                onClick={() => dispatch(setDisplayedPage(pageNum))}
-              >
-                {pageNum}
-              </button>
+              <Fragment key={index}>
+                <button
+                  className={`mx-2 ${pageNum === displayedPage && "font-bold"}`}
+                  onClick={() => dispatch(setDisplayedPage(pageNum))}
+                  key={pageNum}
+                >
+                  {pageNum}
+                </button>
+              </Fragment>
             );
           })
-        : pagesArr.map((pageNum) => {
+        : pagesArr.map((pageNum, index) => {
             if (pageNum === 1 || pageNum === pagesArr.length) {
               return (
-                <>
+                <Fragment key={index}>
                   {pageNum === pagesArr.length && <span>...</span>}
                   <button
                     className={`mx-2 ${
                       pageNum === displayedPage && "font-bold"
                     }`}
                     onClick={() => dispatch(setDisplayedPage(pageNum))}
+                    key={pageNum}
                   >
                     {pageNum}
                   </button>
                   {pageNum === 1 && <span>...</span>}
-                </>
+                </Fragment>
               );
             }
             if (
@@ -49,16 +54,17 @@ const PaginationButtons = ({
               pageNum === displayedPage - 1
             ) {
               return (
-                <>
+                <Fragment key={index}>
                   <button
                     className={`mx-2 ${
                       pageNum === displayedPage && "font-bold"
                     }`}
                     onClick={() => dispatch(setDisplayedPage(pageNum))}
+                    key={pageNum}
                   >
                     {pageNum}
                   </button>
-                </>
+                </Fragment>
               );
             }
           })}
