@@ -13,9 +13,15 @@ User Management Table
 ## Key Features
 
 * Pagination to easily navigate through large datasets
-* Basic data standardization, ensuring consistent data formatting
+* Basic data standardization, ensuring consistent data formatting even with unpurged data (as the fetched dataset)    
 * Sticky header for better navigation through long tables
 * Collapsible search row to maintain a clean and minimal UI
+
+## Standardization
+Example features were added to the data formatting algorithm. Those include:
+- auto format phone numbers
+- auto-remove honorifics from names
+- de-capitalize e-mail adresses 
 
 ## Credits
 
