@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tableOptions = createSlice({
   name: "tableOptions",
-  initialState: { standardizeIsActive: false, showSearch: true },
+  initialState: { standardizeIsActive: true, showSearch: true },
   reducers: {
     toggleStandardize: (state) => {
       state.standardizeIsActive = !state.standardizeIsActive;
