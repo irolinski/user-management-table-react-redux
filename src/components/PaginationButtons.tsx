@@ -21,7 +21,7 @@ const PaginationButtons = ({
             return (
               <Fragment key={index}>
                 <button
-                  className={`mx-2 ${pageNum === displayedPage && "font-bold"}`}
+                  className={`page-button mx-2 ${pageNum === displayedPage && "font-bold"}`}
                   onClick={() => dispatch(setDisplayedPage(pageNum))}
                   key={pageNum}
                 >
@@ -36,7 +36,7 @@ const PaginationButtons = ({
                 <Fragment key={index}>
                   {pageNum === pagesArr.length && <span>...</span>}
                   <button
-                    className={`mx-2 ${
+                    className={`page-button mx-2 ${
                       pageNum === displayedPage && "font-bold"
                     }`}
                     onClick={() => dispatch(setDisplayedPage(pageNum))}
@@ -56,7 +56,7 @@ const PaginationButtons = ({
               return (
                 <Fragment key={index}>
                   <button
-                    className={`mx-2 ${
+                    className={`page-button mx-2 ${
                       pageNum === displayedPage && "font-bold"
                     }`}
                     onClick={() => dispatch(setDisplayedPage(pageNum))}

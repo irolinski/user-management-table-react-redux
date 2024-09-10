@@ -1,3 +1,8 @@
+//COLORS
+$blue: #0266ff;
+$grey: #989696;
+$offwhite: #eff0f0;
+
 // GENERAL
 #root {
   max-width: 1280px;
@@ -18,6 +23,75 @@ main {
   min-width: 50vw;
   min-height: 75vh;
   min-height: 600px;
+}
+
+// MENU
+
+.standardize-switch {
+  .switch-checkbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+  .switch-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background: black; // grey looks better solo but worse on page
+    border-radius: 100px;
+    position: relative;
+    transition: background-color 0.2s;
+  }
+  &.active {
+    .switch-label {
+      background: rgba($blue, 0.8);
+    }
+  }
+
+  .switch-label .switch-button {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 22.5px;
+    height: 22.5px;
+    border-radius: 22.5px;
+    transition: 0.2s;
+    background: #fff;
+    box-shadow: 0 0 2px 0 rgb(10 10 10 / 23%),
+      0px 1px 1px 0px rgb(10 10 10 / 23%);
+  }
+
+  .switch-checkbox:checked + .switch-label .switch-button {
+    left: calc(100% - 1px);
+    transform: translateX(-100%);
+  }
+
+  .switch-label:active .switch-button {
+    width: 30px;
+  }
+}
+
+#search-button {
+  &:hover {
+    cursor: pointer !important;
+  }
+  img {
+    transition: filter 0.5s;
+  }
+  img:hover {
+    filter: invert(68%) sepia(4%) saturate(7%) hue-rotate(314deg)
+      brightness(86%) contrast(92%); //this is "color: $grey" set via filter parameter
+  }
+}
+
+.page-button {
+  &:hover {
+    color: $grey;
+  }
 }
 
 // TABLE
@@ -53,22 +127,24 @@ $cell-height: 80px;
   border-collapse: collapse;
 
   .table-header {
-    position: relative;
+    // position: relative;
+    position: sticky; // resolves search icons showing through bug that occured in Safari
     z-index: 10;
-    background-color: rgb(243, 240, 240) !important;
+    background-color: $offwhite !important;
     max-width: 100%;
     transition: transform 0.3s ease-out;
   }
 
   tr {
-    background-color: transparent !important;
+    // background-color: transparent ;
     border-bottom: 1px solid rgba(128, 128, 128, 0.333);
   }
 
   .table-row {
     min-width: $table-width;
     &:hover {
-      background-color: rgba(228, 228, 228, 0.391) !important;
+      // background-color: rgba(228, 228, 228, 0.391) !important;
+      background: rgba($blue, 0.03);
     }
   }
 
@@ -102,9 +178,6 @@ $cell-height: 80px;
 
   // style table header
   thead {
-    tr:first-child {
-      background-color: rgba(210, 210, 210, 0.3);
-    }
     th {
       padding: 0.8rem 1rem;
       max-width: 0;
@@ -138,9 +211,6 @@ $cell-height: 80px;
       }
     }
   }
-  tbody > tr:nth-child(odd) {
-    background-color: rgba(210, 210, 210, 0.3);
-  }
 
   @media (min-width: 640px) {
     font-size: 14px;
@@ -148,19 +218,29 @@ $cell-height: 80px;
   }
   @media (min-width: 1024px) {
     font-size: 15px;
-    // line-height: 1.5;
   }
 }
 
 // SEARCH INPUT
 .search-input-div {
   &:hover,
-  &:focus {
-    border-color: #025fcc !important;
+  &:focus,
+  &.active {
+    border-color: $blue;
   }
-
+  .search-label {
+    background-color: $offwhite !important;
+    img {
+      filter: invert(68%) sepia(4%) saturate(7%) hue-rotate(314deg)
+        brightness(86%) contrast(92%);
+    }
+  }
   .search-clean-button {
     transition: opacity 1s ease-in-out;
+    color: $grey;
+    &:hover {
+      color: rgba($grey, 0.5);
+    }
   }
 
   input {
@@ -169,48 +249,6 @@ $cell-height: 80px;
       outline: none;
     }
   }
-}
-
-// STANDARDIZE SWITCH
-.switch-checkbox {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
-.switch-label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  width: 50px;
-  height: 25px;
-  background: grey;
-  border-radius: 100px;
-  position: relative;
-  transition: background-color 0.2s;
-}
-
-.switch-label .switch-button {
-  content: "";
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 22.5px;
-  height: 22.5px;
-  border-radius: 22.5px;
-  transition: 0.2s;
-  background: #fff;
-  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-}
-
-.switch-checkbox:checked + .switch-label .switch-button {
-  left: calc(100% - 1px);
-  transform: translateX(-100%);
-}
-
-.switch-label:active .switch-button {
-  width: 30px;
 }
 
 //LOADER
@@ -240,4 +278,7 @@ $cell-height: 80px;
   main {
     transform: scale(0.9);
   }
+}
+::-webkit-scrollbar-thumb {
+  background-color: $grey;
 }

@@ -109,6 +109,7 @@ const App = () => {
                   <div id="search-button">
                     <button onClick={() => dispatch(toggleSearch())}>
                       <img className="w-8 m-1" src={SearchIcon} />
+                      {/* <SearchIcon className="w-8 m-1" color={"grey"}/> */}
                     </button>
                   </div>
                   <label htmlFor="search-button">Search</label>
@@ -121,8 +122,6 @@ const App = () => {
                     <StandardizeSwitch
                       isActive={standardizeIsActive}
                       handleToggle={() => dispatch(toggleStandardize())}
-                      colorOne={"#FFFF"}
-                      colorTwo={"black"}
                     />
                   </div>
                   <label htmlFor="standardize-switch">Format data</label>

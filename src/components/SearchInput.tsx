@@ -19,12 +19,13 @@ const SearchInput = ({
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <div className="search-input-div mx-auto inline-flex h-8 items-stretch border">
-      <div className="w-1/5 -mr-1/5 border-r">
-        <img
-          className="icon search-icon mx-auto w-5 h-full opacity-35"
-          src={SearchIcon}
-        />
+    <div
+      className={`search-input-div mx-auto inline-flex h-8 items-stretch border ${
+        value !== "" && "active"
+      }`}
+    >
+      <div className="search-label w-1/5 -mr-1/5 border-r">
+        <img className="icon search-icon mx-auto w-5 h-full" src={SearchIcon} />
       </div>
       <input
         className="text-center w-3/5 font-light"
@@ -42,7 +43,7 @@ const SearchInput = ({
       />
       <button
         className={`search-clean-button w-1/5  ${
-          value !== "" ? "opacity-60 visible" : "opacity-0 invisible"
+          value !== "" ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => {
           dispatch(searchFunction(""));
