@@ -24,11 +24,11 @@ const SearchInput = ({
         value !== "" && "active"
       }`}
     >
-      <div className="search-label w-1/5 -mr-1/5 border-r">
+      <div className="search-label -mr-1/5 min-w-[33px] border-r">
         <img className="icon search-icon mx-auto w-5 h-full" src={SearchIcon} />
       </div>
       <input
-        className="text-center w-3/5 font-light"
+        className="text-center w-full font-light"
         type="text"
         name="name"
         value={value}
@@ -42,7 +42,7 @@ const SearchInput = ({
         onKeyDown={(evt) => preventSpecialChars(evt)}
       />
       <button
-        className={`search-clean-button w-1/5  ${
+        className={`search-clean-button min-w-[33px] max-w-[33px] ${
           value !== "" ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => {
