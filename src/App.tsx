@@ -215,7 +215,9 @@ const App = () => {
               <div className="w-full flex justify-between">
                 <AmountInfo
                   allResultsNum={users.length}
-                  perPageResultsNum={paginateTable.resultsPerPage}
+                    perPageResultsNum={paginateTable.resultsPerPage}
+                    displayedPage={paginateTable.displayedPage}
+                    pagesArr={pagesArr}
                 />
                 <PaginationButtons
                   pagesArr={pagesArr}
