@@ -99,7 +99,7 @@ const App = () => {
           <span className="loader"></span>
         ) : (
           <section className="table-menu-wrapper">
-            <menu className="h-24 my-4 flex justify-between w-full">
+            <menu className="h-24 px-4  my-4 flex justify-between w-full">
               <div className="h-full flex flex-col justify-center">
                 <label htmlFor="results-per-page">Display: </label>
                 <ResultsPerPage value={paginateTable.resultsPerPage} />
@@ -211,7 +211,7 @@ const App = () => {
                 </tbody>
               </table>
             </div>
-            <section className="table-footer w-full py-4">
+            <section className="table-footer w-full py-4 px-4">
               <div className="w-full flex justify-between">
                 <AmountInfo
                   allResultsNum={users.length}
